@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -7,9 +8,11 @@ const HomePage = () => {
         Unlimited movies, TV shows and more
       </h1>
       <p className="text-lg mb-6">Watch anywhere. Cancel anytime.</p>
-      <button className="bg-red-600 px-6 py-3 rounded-lg text-xl hover:bg-red-500">
-        Get Started
-      </button>
+      <Link to={"/login"}>
+        <button className="bg-red-600 px-6 py-3 rounded-lg text-xl hover:bg-red-500">
+          Get Started
+        </button>
+      </Link>
     </div>
   );
 };

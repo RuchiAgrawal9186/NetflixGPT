@@ -1,30 +1,121 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import { formValidation } from "../utils/formValidation";
+import { useNavigate } from "react-router-dom";
 
 const SignUpLogin = () => {
+  const navigate = useNavigate()
+  const [isSignIn, setIsSignIn] = useState(true);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    error: {},
+  });
+
+  const handleChange = (label, value) => {
+    setFormData((prev) => ({ ...prev, [label]: value }));
+  };
+
+  const handleClick = () => {
+    let res = formValidation(
+      formData?.name,
+      formData?.email,
+      formData?.password,
+      isSignIn ? "signin" : "signup"
+    );
+    console.log(res, "res");
+    if (typeof res === "object" && Object.keys(res)?.length > 0) {
+      setFormData((prev) => {
+        return {
+          ...prev,
+          error: {
+            ...prev.error,
+            ...res,
+          },
+        };
+      });
+    }
+    else
+    {
+      if (isSignIn)
+      {
+        navigate("/")
+      }
+      else
+      {
+        handleToggle()
+      }
+    }
+  };
+  console.log(formData, "formdata");
+  const handleToggle = () => {
+    setIsSignIn((prev) => !prev);
+  };
+
   return (
     <Fragment>
       <div className="flex justify-center items-center h-screen text-white">
         {/* Form Box */}
         <div className="bg-black/60 p-10 rounded-md w-96 ">
-          <h1 className="text-3xl font-bold mb-6">Sign In</h1>
+          <h1 className="text-3xl font-bold mb-6">
+            {isSignIn ? "Sign In" : "Sign Up"}
+          </h1>
 
-          <form className="flex flex-col gap-4">
-            <input
-              type="email"
-              placeholder="Email or phone number"
-              className="p-3 rounded bg-gray-800 text-white focus:outline-none"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="p-3 rounded bg-gray-800 text-white focus:outline-none"
-            />
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <div className="w-full flex flex-col">
+              {!isSignIn && (
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="p-3 rounded bg-gray-800 text-white focus:outline-none"
+                  value={formData?.name || ""}
+                  onChange={(e) => handleChange("name", e.target.value)}
+                />
+              )}
+              {formData?.error?.nameError && (
+                <span className="text-sm text-red-500">
+                  {formData?.error?.nameError}
+                </span>
+              )}
+            </div>
+            <div className="w-full flex flex-col">
+              <input
+                type="email"
+                placeholder="Email or phone number"
+                className="p-3 rounded bg-gray-800 text-white focus:outline-none"
+                value={formData?.email || ""}
+                onChange={(e) => handleChange("email", e.target.value)}
+              />
+              {formData?.error?.emailError && (
+                <span className="text-sm text-red-500">
+                  {formData?.error?.emailError}
+                </span>
+              )}
+            </div>
+            <div className="w-full flex flex-col">
+              <input
+                type="password"
+                placeholder="Password"
+                className="p-3 rounded bg-gray-800 text-white focus:outline-none"
+                value={formData?.password || ""}
+                onChange={(e) => handleChange("password", e.target.value)}
+              />
+              {formData?.error?.passwordError && (
+                <span className="text-sm text-red-500">
+                  {formData?.error?.passwordError}
+                </span>
+              )}
+            </div>
 
             <button
               type="submit"
               className="bg-red-600 text-white font-bold py-3 rounded hover:bg-red-500"
+              onClick={handleClick}
             >
-              Sign In
+              {isSignIn ? "Sign In" : "Sign Up"}
             </button>
 
             {/* Extra options */}
@@ -39,10 +130,10 @@ const SignUpLogin = () => {
           </form>
 
           {/* Sign up link */}
-          <div className="text-gray-400 text-sm mt-6">
-            New to NetflixGPT?{" "}
+          <div className="text-gray-400 text-sm mt-6" onClick={handleToggle}>
+            {isSignIn ? "New to NetflixGPT ?" : "Already have account ?"}{" "}
             <a href="#" className="text-white hover:underline">
-              Sign up now
+              {isSignIn ? "Sign up now" : "Sign in now"}
             </a>
           </div>
 
