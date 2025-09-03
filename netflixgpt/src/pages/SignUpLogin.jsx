@@ -1,9 +1,17 @@
 import React, { Fragment, useState } from "react";
 import { formValidation } from "../utils/formValidation";
 import { useNavigate } from "react-router-dom";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import toast from "react-hot-toast";
 
 const SignUpLogin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -23,29 +31,64 @@ const SignUpLogin = () => {
       formData?.password,
       isSignIn ? "signin" : "signup"
     );
-    console.log(res, "res");
-    if (typeof res === "object" && Object.keys(res)?.length > 0) {
-      setFormData((prev) => {
-        return {
-          ...prev,
-          error: {
-            ...prev.error,
-            ...res,
-          },
-        };
-      });
-    }
-    else
-    {
-      if (isSignIn)
-      {
-        navigate("/")
+
+    if (!res) {
+      if (isSignIn) {
+        signInWithEmailAndPassword(auth, formData?.email, formData?.password)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            if (user?.accessToken) {
+              toast.success("Sign in successfully");
+            }
+            console.log(user, "signin user");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            toast.error(error.message);
+          });
+      } else {
+        createUserWithEmailAndPassword(
+          auth,
+          formData?.email,
+          formData?.password
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+            console.log(user, "signup user");
+            
+            if (user?.accessToken) {
+              toast.success("Sign up successfully");
+            }
+            handleToggle();
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            toast.error(error.message);
+          });
       }
-      else
-      {
-        handleToggle()
+    } else {
+      if (typeof res === "object" && Object.keys(res)?.length > 0) {
+        setFormData((prev) => {
+          return {
+            ...prev,
+            error: {
+              ...prev.error,
+              ...res,
+            },
+          };
+        });
+        return;
       }
     }
+
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      error: {},
+    });
   };
   console.log(formData, "formdata");
   const handleToggle = () => {

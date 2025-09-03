@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { Outlet } from "react-router-dom";
 import Header from "./componenets/Header";
+import  { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
         {/* 🔹 Content (above overlay) */}
         <div className="relative z-10">
+          <Toaster />
           <Header />
           <Outlet />
         </div>
