@@ -8,9 +8,12 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
 
 const SignUpLogin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({
@@ -38,10 +41,21 @@ const SignUpLogin = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+
             if (user?.accessToken) {
               toast.success("Sign in successfully");
+              const { uid, email, displayName, password } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  displayName: displayName,
+                  email: email,
+                  password: password,
+                  type: "signin",
+                })
+              );
+              navigate("/browse");
             }
-            console.log(user, "signin user");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -56,12 +70,22 @@ const SignUpLogin = () => {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
-            console.log(user, "signup user");
-            
+          
+
             if (user?.accessToken) {
               toast.success("Sign up successfully");
+              const { uid, email, displayName, password } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  displayName: displayName,
+                  email: email,
+                  password: password,
+                  type: "signup",
+                })
+              );
+              handleToggle();
             }
-            handleToggle();
           })
           .catch((error) => {
             const errorCode = error.code;
