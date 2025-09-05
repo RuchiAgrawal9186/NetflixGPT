@@ -12,14 +12,13 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
-
   const handleClick = () => {
     if (user?.type === "signin") {
       signOut(auth)
         .then((res) => {
           toast.success("Sign out successfully");
           dispatch(removeUser());
-          navigate("/")
+          navigate("/");
           // Sign-out successful.
         })
         .catch((error) => {
