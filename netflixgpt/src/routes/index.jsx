@@ -3,6 +3,7 @@ import App from "../App";
 import HomePage from "../pages/HomePage";
 import SignUpLogin from "../pages/SignUpLogin";
 import Browse from "../pages/Browse";
+import ProtectedRoute from "../utils/ProtectRoute";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/browse",
-        element: <Browse />,
+        element: (
+          <ProtectedRoute>
+            <Browse />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

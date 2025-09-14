@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { formValidation } from "../utils/formValidation";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,10 +10,12 @@ import { auth } from "../utils/firebase";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
+import { AuthContext } from "../utils/authContext";
 
 const SignUpLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useContext(AuthContext);
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState({
@@ -70,7 +72,6 @@ const SignUpLogin = () => {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
-          
 
             if (user?.accessToken) {
               toast.success("Sign up successfully");
@@ -118,6 +119,12 @@ const SignUpLogin = () => {
   const handleToggle = () => {
     setIsSignIn((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/browse");
+    }
+  }, [user, navigate]);
 
   return (
     <Fragment>
