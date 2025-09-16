@@ -115,7 +115,6 @@ const SignUpLogin = () => {
       error: {},
     });
   };
-  console.log(formData, "formdata");
   const handleToggle = () => {
     setIsSignIn((prev) => !prev);
   };
