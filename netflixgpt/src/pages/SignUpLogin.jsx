@@ -119,11 +119,11 @@ const SignUpLogin = () => {
     setIsSignIn((prev) => !prev);
   };
 
-  useEffect(() => {
-    if (user) {
-      navigate("/browse");
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate("/browse");
+  //   }
+  // }, [user, navigate]);
 
   return (
     <Fragment>
