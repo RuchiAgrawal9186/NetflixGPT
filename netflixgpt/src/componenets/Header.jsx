@@ -26,11 +26,11 @@ const Header = () => {
           toast.error(error.message);
         });
     } else {
-      console.log("come")
+      
       navigate("/login");
     }
   };
-  console.log(user,"user")
+
   return (
     <Fragment>
       <div className="absolute top-0 left-0 w-full h-15 flex justify-between items-center px-10 bg-gradient-to-b from-black/80 to-transparent z-10">

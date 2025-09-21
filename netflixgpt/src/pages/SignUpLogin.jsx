@@ -127,9 +127,17 @@ const SignUpLogin = () => {
 
   return (
     <Fragment>
-      <div className="flex justify-center items-center h-screen text-white">
+      <div
+        className="min-h-screen w-full bg-cover bg-center relative flex justify-center items-center text-white"
+        style={{
+          backgroundImage: `url('https://assets.nflxext.com/ffe/siteui/vlv3/cb72daa5-bd8d-408b-b949-1eaef000c377/web/IN-en-20250825-TRIFECTA-perspective_a3209894-0b01-4ddb-b57e-f32165e20a3f_large.jpg')`,
+        }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/70"></div>
+
         {/* Form Box */}
-        <div className="bg-black/60 p-10 rounded-md w-96 ">
+        <div className="relative z-10 bg-black/80 p-10 rounded-md w-96">
           <h1 className="text-3xl font-bold mb-6">
             {isSignIn ? "Sign In" : "Sign Up"}
           </h1>
@@ -138,8 +146,8 @@ const SignUpLogin = () => {
             className="flex flex-col gap-4"
             onSubmit={(e) => e.preventDefault()}
           >
-            <div className="w-full flex flex-col">
-              {!isSignIn && (
+            {!isSignIn && (
+              <div className="w-full flex flex-col">
                 <input
                   type="text"
                   placeholder="Name"
@@ -147,13 +155,14 @@ const SignUpLogin = () => {
                   value={formData?.name || ""}
                   onChange={(e) => handleChange("name", e.target.value)}
                 />
-              )}
-              {formData?.error?.nameError && (
-                <span className="text-sm text-red-500">
-                  {formData?.error?.nameError}
-                </span>
-              )}
-            </div>
+                {formData?.error?.nameError && (
+                  <span className="text-sm text-red-500">
+                    {formData?.error?.nameError}
+                  </span>
+                )}
+              </div>
+            )}
+
             <div className="w-full flex flex-col">
               <input
                 type="email"
@@ -168,6 +177,7 @@ const SignUpLogin = () => {
                 </span>
               )}
             </div>
+
             <div className="w-full flex flex-col">
               <input
                 type="password"
@@ -202,7 +212,7 @@ const SignUpLogin = () => {
             </div>
           </form>
 
-          {/* Sign up link */}
+          {/* Sign up / Sign in toggle */}
           <div className="text-gray-400 text-sm mt-6" onClick={handleToggle}>
             {isSignIn ? "New to NetflixGPT ?" : "Already have account ?"}{" "}
             <a href="#" className="text-white hover:underline">
@@ -210,7 +220,6 @@ const SignUpLogin = () => {
             </a>
           </div>
 
-          {/* Info */}
           <p className="text-xs text-gray-500 mt-4">
             This page is protected by Google reCAPTCHA to ensure you're not a
             bot.

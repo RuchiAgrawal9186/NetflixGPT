@@ -1,34 +1,24 @@
-import React, { useEffect } from 'react'
-import { addTrailerVideo } from '../store/movieSlice';
-import { useSelector } from 'react-redux';
-import { API_OPTIONS } from '../utils/constant';
+import React from "react";
 
-const VideoBackground = ({movieId}) => {
-const trailerVideo = useSelector((store)=> store.movie.trailerVideo)
-     const getMovieVideo = async () => {
-       let res = await fetch(
-         'https://api.themoviedb.org/3/movie/976573/videos?language=en-US',
-         API_OPTIONS
-       );
-         let data = await res.json();
-     
+import { useDispatch, useSelector } from "react-redux";
 
-         const filterData = data?.results?.filter((video) => video?.type === "Trailer")
-         const trailer = filterData?.length>0 ? filterData?.[0] : data?.results?.[0]
-    
-       dispatch(addTrailerVideo(trailer));
-       console.log(trailer,"trailer")
-     };
-    
-     useEffect(() => {
-       getMovieVideo();
-     }, []);
-    
+import useVideoTrailer from "../hooks/useVideoTrailer";
+
+const VideoBackground = ({ movieId }) => {
+  const trailerVideo = useSelector((store) => store.movie.trailerVideo);
+  useVideoTrailer(movieId);
+
   return (
-    <div>
-      
+    <div className="relative w-screen h-screen overflow-hidden">
+      <iframe
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}`}
+        title={trailerVideo.name}
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+      ></iframe>
     </div>
-  )
-}
+  );
+};
 
-export default VideoBackground
+export default VideoBackground;
