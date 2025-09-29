@@ -6,3 +6,33 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOGEyZTNhN2Q3NDNiNzZlNTJjNjU1MTlhYjNhNTA2NCIsIm5iZiI6MTY4MTAyMzU2Ny42MjQsInN1YiI6IjY0MzI2MjRmOTI0Y2U2MDA3N2IwMDk5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.deaGX5HkJuvaOozl-0WEhDmDs691Z9vK59RpPxt_hiM",
   },
 };
+
+export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
+export const BACKGROUND_IMAGE =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/cb72daa5-bd8d-408b-b949-1eaef000c377/web/IN-en-20250825-TRIFECTA-perspective_a3209894-0b01-4ddb-b57e-f32165e20a3f_large.jpg";
+
+export const LANGUAGES = [
+  { label: "English", value: "en" },
+  { label: "Hindi", value: "hn" },
+];
+
+export  const LANGUAGE_OBJ = {
+  en: {
+    gptSearch: "GPT Search",
+    signIn: "Sign In",
+    signOut: "Sign Out",
+    backToBrowse: "Back to Browse",
+    homeTitle: "Unlimited movies, TV shows and more",
+    homeSubtitle: "Watch anywhere. Cancel anytime.",
+    getStarted: "Get Started",
+  },
+  hn: {
+    gptSearch: "जीपीटी खोज",
+    signIn: "साइन इन",
+    signOut: "साइन आउट",
+    backToBrowse: "ब्राउज़ पर वापस जाएं",
+    homeTitle: "अनलिमिटेड फ़िल्में, टीवी शो और भी बहुत कुछ",
+    homeSubtitle: "कहीं भी देखें। कभी भी रद्द करें।",
+    getStarted: "शुरू करें",
+  },
+};

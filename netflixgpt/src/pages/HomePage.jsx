@@ -1,7 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { LANGUAGE_OBJ } from "../utils/constant";
 
 const HomePage = () => {
+  const currentLang = useSelector((store) => store.language.currentLang);
+  const lang = LANGUAGE_OBJ[currentLang];
+
   return (
     <div
       className="w-full h-screen bg-cover bg-center relative flex flex-col justify-center items-center text-white"
@@ -14,13 +19,11 @@ const HomePage = () => {
 
       {/* Content above overlay */}
       <div className="relative z-10 text-center">
-        <h1 className="text-5xl font-bold mb-4">
-          Unlimited movies, TV shows and more
-        </h1>
-        <p className="text-lg mb-6">Watch anywhere. Cancel anytime.</p>
+        <h1 className="text-5xl font-bold mb-4">{lang?.homeTitle}</h1>
+        <p className="text-lg mb-6">{lang?.homeSubtitle}</p>
         <Link to="/login">
           <button className="bg-red-600 px-6 py-3 rounded-lg text-xl hover:bg-red-500">
-            Get Started
+            {lang?.getStarted}
           </button>
         </Link>
       </div>

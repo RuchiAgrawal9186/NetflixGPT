@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import SignUpLogin from "../pages/SignUpLogin";
 import Browse from "../pages/Browse";
 import ProtectedRoute from "../utils/ProtectRoute";
+import GPTSearchPage from "../componenets/GPTSearchPage";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Browse />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/gpt",
+        element: (
+          <ProtectedRoute>
+            <GPTSearchPage></GPTSearchPage>
           </ProtectedRoute>
         ),
       },
