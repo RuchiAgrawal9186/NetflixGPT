@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { getNowPlayingMovies, getPopulerMovies } from "../store/movieSlice";
 import { API_OPTIONS } from "../utils/constant";
 
-const usePopulerMovies = () => {
+const usePopulerMovies = (currentLang) => {
   const dispatch = useDispatch();
   const getPopulerMovie = async () => {
     let res = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      `https://api.themoviedb.org/3/movie/popular?language=${currentLang}&page=1`,
       API_OPTIONS
     );
     let data = await res.json();
@@ -17,7 +17,7 @@ const usePopulerMovies = () => {
 
   useEffect(() => {
     getPopulerMovie();
-  }, []);
+  }, [currentLang]);
 };
 
 export default usePopulerMovies;

@@ -41,13 +41,18 @@ const Header = () => {
 
   return (
     <Fragment>
-      <div className="absolute top-0 left-0 w-full h-15 flex justify-between items-center px-10 bg-gradient-to-b from-black/80 to-transparent z-10">
-        <img src={logo} alt="logo" className="w-40 h-10" onClick={()=> navigate("/")}/>
+      <div className="absolute top-0 left-0 w-full h-15 flex justify-between items-center px-10 bg-gradient-to-b from-black/80 to-transparent z-30">
+        <img
+          src={logo}
+          alt="logo"
+          className="w-40 h-10"
+          onClick={() => navigate("/")}
+        />
 
         <div className="flex gap-2 items-center">
           {/* Language Selector */}
           <select
-            className="bg-black/70 text-white px-2 py-1 rounded border border-white"
+            className="bg-black/70 text-white px-2 py-1 rounded border border-white z-50"
             value={currentLang}
             onChange={(e) => dispatch(setLanguage(e.target.value))}
           >

@@ -12,12 +12,12 @@ export const BACKGROUND_IMAGE =
   "https://assets.nflxext.com/ffe/siteui/vlv3/cb72daa5-bd8d-408b-b949-1eaef000c377/web/IN-en-20250825-TRIFECTA-perspective_a3209894-0b01-4ddb-b57e-f32165e20a3f_large.jpg";
 
 export const LANGUAGES = [
-  { label: "English", value: "en" },
-  { label: "Hindi", value: "hn" },
+  { label: "English", value: "en-US" },
+  { label: "Hindi", value: "hi-IN" },
 ];
 
-export  const LANGUAGE_OBJ = {
-  en: {
+export const LANGUAGE_OBJ = {
+  "en-US": {
     gptSearch: "GPT Search",
     signIn: "Sign In",
     signOut: "Sign Out",
@@ -25,8 +25,10 @@ export  const LANGUAGE_OBJ = {
     homeTitle: "Unlimited movies, TV shows and more",
     homeSubtitle: "Watch anywhere. Cancel anytime.",
     getStarted: "Get Started",
+    searchPlaceholder: "What would you like to watch today?",
+    searchBtn: "Search",
   },
-  hn: {
+  "hi-IN": {
     gptSearch: "जीपीटी खोज",
     signIn: "साइन इन",
     signOut: "साइन आउट",
@@ -34,5 +36,9 @@ export  const LANGUAGE_OBJ = {
     homeTitle: "अनलिमिटेड फ़िल्में, टीवी शो और भी बहुत कुछ",
     homeSubtitle: "कहीं भी देखें। कभी भी रद्द करें।",
     getStarted: "शुरू करें",
+    searchPlaceholder: "आज आप क्या देखना चाहेंगे?",
+    searchBtn: "खोजें",
   },
 };
+
+export const OPENAPI_KEY = import.meta.env.VITE_OPENAI_API_KEY;

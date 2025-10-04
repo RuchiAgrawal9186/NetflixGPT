@@ -6,7 +6,8 @@ import useVideoTrailer from "../hooks/useVideoTrailer";
 
 const VideoBackground = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movie.trailerVideo);
-  useVideoTrailer(movieId);
+   const currentLang = useSelector((store) => store.language.currentLang);
+  useVideoTrailer(movieId, currentLang);
 
   return (
     <div className="relative w-screen h-[100vh] overflow-hidden">

@@ -6,12 +6,16 @@ import SecondoryContainer from "../componenets/SecondoryContainer";
 import usePopulerMovies from "../hooks/usePopulerMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import { useSelector } from "react-redux";
+import { LANGUAGE_OBJ } from "../utils/constant";
 
 const Browse = () => {
-  useNowPlayingMovie();
-  usePopulerMovies()
-  useTopRatedMovies()
-  useUpcomingMovies()
+   const currentLang = useSelector((store) => store.language.currentLang);
+   const lang = LANGUAGE_OBJ[currentLang];
+  useNowPlayingMovie(currentLang);
+  usePopulerMovies(currentLang);
+  useTopRatedMovies(currentLang);
+  useUpcomingMovies(currentLang);
   return (
     <div className="bg-black">
       {/* Hero Section */}
