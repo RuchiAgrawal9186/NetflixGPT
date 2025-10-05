@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getNowPlayingMovies } from "../store/movieSlice";
 import { API_OPTIONS } from "../utils/constant";
 
 const useNowPlayingMovie = (currentLang) => {
- 
   const dispatch = useDispatch();
+  const nowPlayingMovies = useSelector((store) => store.movie.nowPlayingMovies);
   const getNowPlayingMovie = async () => {
     let res = await fetch(
       `https://api.themoviedb.org/3/movie/now_playing?language=${currentLang}&page=1`,
@@ -17,7 +17,9 @@ const useNowPlayingMovie = (currentLang) => {
   };
 
   useEffect(() => {
-    getNowPlayingMovie();
+    if (nowPlayingMovies?.length === 0) {
+      getNowPlayingMovie();
+    }
   }, [currentLang]);
 };
 
