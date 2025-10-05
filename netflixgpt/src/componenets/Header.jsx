@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import logo from "../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,17 +8,19 @@ import toast from "react-hot-toast";
 import { removeUser } from "../store/userSlice";
 import { LANGUAGE_OBJ, LANGUAGES } from "../utils/constant";
 import { setLanguage } from "../store/languageSlice";
+import { AuthContext } from "../utils/authContext";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const user = useSelector((store) => store.user);
+  // const user = useSelector((store) => store.user);
   const currentLang = useSelector((store) => store.language.currentLang);
   const lang = LANGUAGE_OBJ[currentLang];
+  const { user } = useContext(AuthContext)
 
   const handleClick = () => {
-    if (user?.type === "signin") {
+    if (user) {
       signOut(auth)
         .then((res) => {
           toast.success("Sign out successfully");
@@ -85,7 +87,7 @@ const Header = () => {
             className="bg-red-600 text-white font-semibold rounded-md px-3 py-1 text-sm sm:text-base hover:bg-red-500 transition"
             onClick={handleClick}
           >
-            {user?.type === "signin" ? lang.signOut : lang.signIn}
+            {user ? lang.signOut : lang.signIn}
           </button>
         </div>
       </header>

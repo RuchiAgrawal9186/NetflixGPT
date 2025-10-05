@@ -22,6 +22,13 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // if (loading) {
+  //   return (
+  //     <div className="flex items-center justify-center h-screen text-white">
+  //       Loading...
+  //     </div>
+  //   );
+  // }
   return (
     <AuthContext.Provider value={{ user, loading }}>
       {children}
