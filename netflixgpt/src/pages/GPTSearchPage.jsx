@@ -13,9 +13,15 @@ const GPTSearchPage = () => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/70"></div>
 
-      <div className="relative z-10 flex flex-col items-center w-full h-full pt-32 overflow-y-auto">
+      {/* <div className="relative z-10 flex flex-col items-center w-full h-full pt-32 overflow-y-auto">
         <GPTSearchBar />
         <GPTMovieSuggestion />
+      </div> */}
+      <div className="relative z-10 flex flex-col items-center w-full h-full pt-24 sm:pt-28 md:pt-32 overflow-y-auto  ">
+        <GPTSearchBar />
+        <div className="mt-8 sm:mt-10 md:mt-12 w-full max-w-screen bg-black/60">
+          <GPTMovieSuggestion />
+        </div>
       </div>
     </div>
   );

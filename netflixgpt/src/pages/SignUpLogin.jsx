@@ -137,7 +137,7 @@ const SignUpLogin = () => {
         <div className="absolute inset-0 bg-black/70"></div>
 
         {/* Form Box */}
-        <div className="relative z-10 bg-black/80 p-10 rounded-md w-96">
+        <div className="relative z-10 bg-black/80 p-10 rounded-md w-96 mt-20">
           <h1 className="text-3xl font-bold mb-6">
             {isSignIn ? "Sign In" : "Sign Up"}
           </h1>

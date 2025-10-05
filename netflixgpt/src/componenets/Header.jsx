@@ -41,22 +41,22 @@ const Header = () => {
 
   return (
     <Fragment>
-      <div className="absolute top-0 left-0 w-full h-15 flex justify-between items-center px-10 bg-gradient-to-b from-black/80 to-transparent z-30">
+      <header className="fixed top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-10 py-4 bg-gradient-to-b from-black/80 to-transparent z-50">
         <img
           src={logo}
           alt="logo"
-          className="w-40 h-10"
+          className="w-28 sm:w-32 md:w-40 h-auto cursor-pointer"
           onClick={() => navigate("/")}
         />
 
-        <div className="flex gap-2 items-center">
+        <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 items-center justify-center mt-3 sm:mt-0">
           {/* Language Selector */}
           <select
-            className="bg-black/70 text-white px-2 py-1 rounded border border-white z-50"
+            className="bg-black/70 text-white px-2 py-1 rounded border border-white text-sm sm:text-base"
             value={currentLang}
             onChange={(e) => dispatch(setLanguage(e.target.value))}
           >
-            {LANGUAGES?.map((lang) => (
+            {LANGUAGES.map((lang) => (
               <option key={lang.value} value={lang.value}>
                 {lang.label}
               </option>
@@ -66,14 +66,14 @@ const Header = () => {
           {/* Conditional Button */}
           {location.pathname === "/gpt" ? (
             <button
-              className="bg-red-600 text-white font-bold rounded-md px-3 py-1 cursor-pointer hover:bg-red-500"
+              className="bg-red-600 text-white font-semibold rounded-md px-3 py-1 text-sm sm:text-base hover:bg-red-500 transition"
               onClick={() => navigate("/browse")}
             >
               {lang.backToBrowse}
             </button>
           ) : (
             <button
-              className="bg-red-600 text-white font-bold rounded-md px-3 py-1 cursor-pointer hover:bg-red-500"
+              className="bg-red-600 text-white font-semibold rounded-md px-3 py-1 text-sm sm:text-base hover:bg-red-500 transition"
               onClick={handleNavigate}
             >
               {lang.gptSearch}
@@ -82,13 +82,13 @@ const Header = () => {
 
           {/* Sign In/Out */}
           <button
-            className="bg-red-600 text-white font-bold rounded-md px-3 py-1 cursor-pointer hover:bg-red-500"
+            className="bg-red-600 text-white font-semibold rounded-md px-3 py-1 text-sm sm:text-base hover:bg-red-500 transition"
             onClick={handleClick}
           >
             {user?.type === "signin" ? lang.signOut : lang.signIn}
           </button>
         </div>
-      </div>
+      </header>
     </Fragment>
   );
 };

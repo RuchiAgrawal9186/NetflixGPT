@@ -10,19 +10,22 @@ import { useSelector } from "react-redux";
 import { LANGUAGE_OBJ } from "../utils/constant";
 
 const Browse = () => {
-   const currentLang = useSelector((store) => store.language.currentLang);
-   const lang = LANGUAGE_OBJ[currentLang];
+  const currentLang = useSelector((store) => store.language.currentLang);
+  const lang = LANGUAGE_OBJ[currentLang];
   useNowPlayingMovie(currentLang);
   usePopulerMovies(currentLang);
   useTopRatedMovies(currentLang);
   useUpcomingMovies(currentLang);
   return (
-    <div className="bg-black">
+    <div className="bg-black min-h-screen w-full relative z-10">
       {/* Hero Section */}
       <MainContainer />
 
       {/* Push rows below hero */}
-      <div className="relative z-30 -mt-20">
+      {/* <div className="relative z-30 -mt-20">
+        <SecondoryContainer />
+      </div> */}
+      <div className="relative z-30 -mt-10 sm:-mt-16 md:-mt-20">
         <SecondoryContainer />
       </div>
     </div>
