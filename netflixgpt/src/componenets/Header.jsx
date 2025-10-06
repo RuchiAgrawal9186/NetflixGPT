@@ -17,7 +17,7 @@ const Header = () => {
   // const user = useSelector((store) => store.user);
   const currentLang = useSelector((store) => store.language.currentLang);
   const lang = LANGUAGE_OBJ[currentLang];
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const handleClick = () => {
     if (user) {
@@ -72,6 +72,13 @@ const Header = () => {
               onClick={() => navigate("/browse")}
             >
               {lang.backToBrowse}
+            </button>
+          ) : location.pathname === "/" ? (
+            <button
+              className="bg-red-600 text-white font-semibold rounded-md px-3 py-1 text-sm sm:text-base hover:bg-red-500 transition"
+              onClick={() => navigate("/browse")}
+            >
+              {"Browse"}
             </button>
           ) : (
             <button
