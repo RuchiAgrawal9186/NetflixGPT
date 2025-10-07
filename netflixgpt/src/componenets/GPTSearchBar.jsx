@@ -31,21 +31,7 @@ const GPTSearchBar = () => {
     dispatch(handleMovieResult(searchMoviesResults));
   };
   return (
-    // <div className="flex w-1/2  mt-30">
-    //   <input
-    //     type="text"
-    //     value={query}
-    //     onChange={(e) => setQuery(e.target.value)}
-    //     placeholder={lang?.searchPlaceholder}
-    //     className="w-full flex-grow px-6 py-4 text-lg rounded-l-md bg-white text-black placeholder-gray-500 outline-none focus:ring-2 focus:ring-red-500"
-    //   />
-    //   <button
-    //     onClick={handleSearch}
-    //     className="bg-red-600 px-8 py-4 text-lg rounded-r-md font-bold text-white hover:bg-red-500"
-    //   >
-    //     {lang?.searchBtn}
-    //   </button>
-    // </div>
+    
     <form
       onSubmit={handleSearch}
       className="w-full max-w-2xl sm:max-w-3xl md:max-w-4xl flex flex-col sm:flex-row items-center justify-center mt-8 sm:mt-10 md:mt-16 gap-3 sm:gap-0 px-4"

@@ -1,9 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
+import MovieListSkeleton from "./skeleton/MovieListSkeleton";
 
 const GPTMovieSuggestion = () => {
-  const { moviesNames, moviesResults } = useSelector((store) => store.gpt);
+  const { moviesNames, moviesResults, loading } = useSelector(
+    (store) => store.gpt
+  );
+
+  if (loading) {
+    return (
+      <div className="relative z-30 w-full h-auto opacity-90">
+        {/* Show 5 skeleton rows */}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <MovieListSkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className=" relative z-30 w-full  h-auto opacity-90 ">

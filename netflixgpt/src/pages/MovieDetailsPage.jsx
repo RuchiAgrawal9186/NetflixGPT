@@ -1,11 +1,13 @@
 import  { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_OPTIONS } from "../utils/constant";
+import MovieDetailSkeleton from "../componenets/skeleton/MovieDetailSkeleton";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [trailer, setTrailer] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const getTrailer = async () => {
     try {
@@ -34,20 +36,22 @@ const MovieDetailsPage = () => {
         );
         let data = await res.json();
         setMovie(data);
-        
       } catch (error) {
         console.error("Error fetching movie details:", error);
+      } finally {
+        setLoading(false); // 👈 stop loading after fetching
       }
     };
 
   useEffect(() => {
     if (id) {
+      setLoading(true);
         getTrailer();
         getTrailerDetails()
     }
   }, [id]);
 
-  if (!movie) return <div className="text-white p-10">Loading...</div>;
+  if (!movie &&  loading ) return <MovieDetailSkeleton></MovieDetailSkeleton>;
   return (
     <div className="bg-black min-h-screen text-white pt-[80px] flex flex-col items-center w-full">
       {/* Trailer Video Section */}

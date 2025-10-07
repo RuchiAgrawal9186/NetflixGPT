@@ -3,10 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const gptSlice = createSlice({
   name: "gpt",
   initialState: {
+    loading:false,
     moviesNames: [],
     moviesResults: [],
   },
   reducers: {
+    handleLoading(state, action) {
+      state.loading=action.payload
+    },
     handleMovieName(state, action) {
       state.moviesNames = action.payload;
     },
@@ -16,5 +20,5 @@ export const gptSlice = createSlice({
   },
 });
 
-export const {handleMovieName,handleMovieResult} = gptSlice.actions
+export const { handleMovieName, handleMovieResult, handleLoading } = gptSlice.actions;
 export default gptSlice.reducer
