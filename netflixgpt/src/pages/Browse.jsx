@@ -21,10 +21,6 @@ const Browse = () => {
       {/* Hero Section */}
       <MainContainer />
 
-      {/* Push rows below hero */}
-      {/* <div className="relative z-30 -mt-20">
-        <SecondoryContainer />
-      </div> */}
       <div className="relative z-30 -mt-10 sm:-mt-16 md:-mt-20">
         <SecondoryContainer />
       </div>
