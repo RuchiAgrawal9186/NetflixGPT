@@ -129,4 +129,4 @@ npm run dev
 
 # 🧑‍💻 Author
 
-YourBuddy is built with ❤️ by Ruchi Agrawal.
+NetflixGPT is built with ❤️ by Ruchi Agrawal.
