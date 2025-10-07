@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { removeUser } from "../store/userSlice";
 import { LANGUAGE_OBJ, LANGUAGES } from "../utils/constant";
 import { setLanguage } from "../store/languageSlice";
-import { AuthContext } from "../utils/authContext";
+import { AuthContext } from "../utils/AuthUserContext";
 import { handleClear } from "../store/movieSlice";
 
 const Header = () => {

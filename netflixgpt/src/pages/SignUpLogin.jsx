@@ -10,7 +10,7 @@ import { auth } from "../utils/firebase";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
-import { AuthContext } from "../utils/authContext";
+import { AuthContext } from "../utils/AuthUserContext";
 
 const SignUpLogin = () => {
   const navigate = useNavigate();
