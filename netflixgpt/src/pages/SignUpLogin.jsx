@@ -202,14 +202,6 @@ const SignUpLogin = () => {
             </button>
 
             {/* Extra options */}
-            <div className="flex justify-between text-gray-400 text-sm mt-2">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="w-4 h-4" /> Remember me
-              </label>
-              <a href="#" className="hover:underline">
-                Need help?
-              </a>
-            </div>
           </form>
 
           {/* Sign up / Sign in toggle */}
@@ -219,11 +211,6 @@ const SignUpLogin = () => {
               {isSignIn ? "Sign up now" : "Sign in now"}
             </a>
           </div>
-
-          <p className="text-xs text-gray-500 mt-4">
-            This page is protected by Google reCAPTCHA to ensure you're not a
-            bot.
-          </p>
         </div>
       </div>
     </Fragment>
