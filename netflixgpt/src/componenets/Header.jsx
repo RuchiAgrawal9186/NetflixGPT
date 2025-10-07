@@ -9,6 +9,7 @@ import { removeUser } from "../store/userSlice";
 import { LANGUAGE_OBJ, LANGUAGES } from "../utils/constant";
 import { setLanguage } from "../store/languageSlice";
 import { AuthContext } from "../utils/authContext";
+import { handleClear } from "../store/movieSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Header = () => {
         .then((res) => {
           toast.success("Sign out successfully");
           dispatch(removeUser());
+          dispatch(handleClear());
           navigate("/");
           // Sign-out successful.
         })
@@ -73,7 +75,7 @@ const Header = () => {
             >
               {lang.backToBrowse}
             </button>
-          ) : location.pathname === "/" ? (
+          ) : location.pathname === "/" || location.pathname === "/login" ? (
             <button
               className="bg-red-600 text-white font-semibold rounded-md px-3 py-1 text-sm sm:text-base hover:bg-red-500 transition"
               onClick={() => navigate("/browse")}
