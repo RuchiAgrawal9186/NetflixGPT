@@ -102,7 +102,7 @@ netflixgpt/
 ## ⚡ Setup Instructions
 
 ### 1️⃣ Clone the repository
-git clone https://github.com/yourusername/netflixgpt.git
+git clone https://github.com/RuchiAgrawal9186/NetflixGPT.git
 cd netflixgpt
 
 ### 2️⃣ Install dependencies
