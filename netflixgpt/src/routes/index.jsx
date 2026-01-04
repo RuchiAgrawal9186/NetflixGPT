@@ -6,7 +6,7 @@ import Browse from "../pages/Browse";
 import ProtectedRoute from "../utils/ProtectRoute";
 import GPTSearchPage from "../pages/GPTSearchPage";
 import MovieDetailsPage from "../pages/MovieDetailsPage";
-// import GPTSearchPage from "../componenets/GPTSearchPage";
+
 
 export const router = createBrowserRouter([
   {
